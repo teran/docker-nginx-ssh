@@ -12,7 +12,7 @@ RUN apt-get update && \
     rm -vf /etc/ssh/ssh_host_*
 
 RUN mkdir -p /public /run/sshd && \
-    useradd -s /bin/sh publisher && \
+    useradd -s /bin/sh publisher -d /home/publisher -m && \
     chown publisher:publisher /public
 
 ADD supervisord.conf /etc/supervisor/supervisord.conf
