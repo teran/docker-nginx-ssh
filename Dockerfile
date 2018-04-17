@@ -11,9 +11,9 @@ RUN apt-get update && \
     rm -rvf /var/lib/apt/lists/* && \
     rm -vf /etc/ssh/ssh_host_*
 
-RUN mkdir -p /public /run/sshd && \
-    useradd -s /bin/sh publisher -d /home/publisher -m && \
-    chown publisher:publisher /public
+RUN useradd -s /bin/sh publisher -d /home/publisher -m && \
+    mkdir -p /public /run/sshd /home/publisher/.ssh && \
+    chown publisher:publisher /public /home/publisher/.ssh
 
 ADD supervisord.conf /etc/supervisor/supervisord.conf
 ADD nginx.conf /etc/nginx/nginx.conf
